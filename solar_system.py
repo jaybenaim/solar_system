@@ -1,7 +1,11 @@
 class System:
+    bodies = []
     planets = [] 
+    stars = [] 
+    moons = [] 
+
     def __init__(self):
-        self.bodies = []
+        pass
         
     # def __str__(self):
     #     return f"{self.bodies}"
@@ -12,13 +16,22 @@ class System:
 
     def add_body(self, body):
         if body not in self.bodies: 
-            self.bodies.append(body)
+            System.bodies.append(body)
         return body 
        
     def add_planet(self, planet): 
-        if planet not in System.planets: 
+        # if planet.__class__ != '__main__.Star' and __class__ != '__main__.Moon':
+        if planet not in System.planets:
             System.planets.append(planet)  
         return planet
+    def add_star(self, star): 
+        if star not in System.stars: 
+            System.stars.append(star)  
+        return star
+    def add_moon(self, moon): 
+        if moon not in System.moons: 
+            System.moons.append(moon)  
+        return moon
 
     def total_mass(self):
         # make regex to see if no characters present
@@ -26,13 +39,38 @@ class System:
         for body in self.bodies:
             total += body.mass
         return f"The total mass is {total}"
+        
+    @classmethod
+    def total_mass_of_system(cls):
+        # make regex to see if no characters present
+        total = 0
+        for body in cls.bodies:
+            total += body.mass
+        for planet in cls.planets: 
+            total += planet.mass 
+        for star in cls.stars: 
+            total += star.mass
+        for moon in cls.moons: 
+            total += moon.mass 
+            
+        return f"The total mass is {total}"
 
 
     @classmethod
-    def all(cls, system):
+    def all_planets(cls, system):
         for planets in cls.planets:
             return f'{cls.planets}'
-        
+    
+    @classmethod
+    def all_stars(cls, system):
+        for star in cls.stars:
+            return f'{cls.stars}'
+    
+    @classmethod
+    def all_moons(cls, system):
+        for moon in cls.moons:
+            return f'{cls.moons}'
+    
 class Body:
     def __init__(self, name, mass):
         self.name = name
@@ -104,9 +142,12 @@ system1.add_body(body2)
 system1.add_body(body3)
 system1.add_planet(jupitar)
 system1.add_planet(earth)
-system1.add_planet(mars)
+system1.add_planet(sun)
+system1.add_star(sun) 
  
-print(System.all(system1))
+# print(System.all_stars(system1))
+print(System.all_planets(system1))
+print(System.total_mass_of_system())
 # print(body1)
 # print(system1)
 
