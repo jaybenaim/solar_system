@@ -1,7 +1,8 @@
 class System:
+    planets = [] 
     def __init__(self):
         self.bodies = []
-
+        
     # def __str__(self):
     #     return f"{self.bodies}"
     # def __repr__(self):
@@ -9,11 +10,15 @@ class System:
     def __repr__(self):
         return f"{self.bodies}"
 
-    def add(self, body):
+    def add_body(self, body):
         if body not in self.bodies: 
             self.bodies.append(body)
+        return body 
        
-           
+    def add_planet(self, planet): 
+        if planet not in System.planets: 
+            System.planets.append(planet)  
+        return planet
 
     def total_mass(self):
         # make regex to see if no characters present
@@ -23,6 +28,11 @@ class System:
         return f"The total mass is {total}"
 
 
+    @classmethod
+    def all(cls, system):
+        for planets in cls.planets:
+            return f'{cls.planets}'
+        
 class Body:
     def __init__(self, name, mass):
         self.name = name
@@ -37,27 +47,15 @@ class Body:
 
 
 class Planet(Body):
-    planets = []
+    
     def __init__(self, name, mass, day, year):
         super().__init__(name, mass)
         self.day = day
         self.year = year
-         
         return
 
     def __str__(self):
         return f" Name: {self.name} | Mass {self.mass} | Day: {self.day} | Year {self.year}"
-
-    def add_planet(self, planet): 
-        if planet not in self.planets: 
-            self.planets.append(planet)
-
-    @classmethod
-    def all(cls): 
-        return f'{cls.planets}'
-        
-        
-
 
 class Star(Body):
     def __init__(self, name, mass, type_of_star):
@@ -82,30 +80,35 @@ class Moon(Body):
 
 
 earth = Planet("Earth", 100, 23, 233)
+jupitar = Planet('Jupitar', 5, 12, 210)
+mars = Planet('mars', 1222, 4, 110)
 sun = Star("Sun", 200, "G-type")
 earth_moon = Moon("Earth's moon", 300, 23, earth)
-jupitar = Planet('Jupitar', 5, 12, 21)
-earth.add_planet(jupitar)
-pluto = earth.add_planet(sun)
-print(Planet.all())
+
+
+
 # system1 = System()
-# system1.add(earth)
-# system1.add(sun)
+# system1.add_body(earth)
+# system1.add_body(sun)
 # print(system1)
 # print(system1.total_mass())
 
-
 body1 = Body(earth, earth.mass)
 body2 = Body(sun, sun.mass)
+body3 = Body(jupitar, jupitar.mass)
 
 system1 = System()
-system1.add(body1)
-system1.add(body1)
-system1.add(body2)
-
-
+system1.add_body(body1)
+system1.add_body(body1) 
+system1.add_body(body2)
+system1.add_body(body3)
+system1.add_planet(jupitar)
+system1.add_planet(earth)
+system1.add_planet(mars)
+ 
+print(System.all(system1))
 # print(body1)
-print(system1)
+# print(system1)
 
 # print(system1.total_mass())
 
@@ -117,14 +120,14 @@ print(system1)
 # bod2 = Body(earth, earth_moon)
 # bod3 = Body(sun, earth_moon)
 # system1 = System()
-# system1.add(bod1)
+# system1.add_body(bod1)
 # # print(bod1.mass)
-# system1.add(bod2)
-# system1.add(bod3)
+# system1.add_body(bod2)
+# system1.add_body(bod3)
 # print(system1.total_mass())
 # new_body = Body(earth, sun)
-# system1.add(new_body)
+# system1.add_body(new_body)
 # print(system1)
 # solar = System()
-# solar.add(new_body)
+# solar.add_body(new_body)
 # print(system1.total_mass())
