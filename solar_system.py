@@ -25,18 +25,27 @@ class System:
                 if planet not in System.planets:
                     System.planets.append(planet)
             return planet
-        except AttributeError:
+        except:
             print("ERROR: YOU CANNOT ADD SOMETHING THAT IS NOT A PLANET! ")
 
     def add_star(self, star):
-        if star not in System.stars:
-            System.stars.append(star)
-        return star
+        try:
+            if star.id == "star":
+                if star not in System.stars:
+                    System.stars.append(star)
+            return star
+        except:
+            print("ERROR: YOU CANNOT ADD SOMETHING THAT IS NOT A STAR! ")
 
     def add_moon(self, moon):
-        if moon not in System.moons:
-            System.moons.append(moon)
-        return moon
+        try:
+            if moon.id == "moon":
+                if moon not in System.moons:
+                    System.moons.append(moon)
+            return moon
+        except:
+            print("ERROR: YOU CANNOT ADD SOMETHING THAT IS NOT A MOON! ")
+
 
     def total_mass(self):
 
@@ -104,6 +113,7 @@ class Planet(Body):
 class Star(Body):
     def __init__(self, name, mass, type_of_star):
         super().__init__(name, mass)
+        self.id = 'star'
         self.type_of_star = type_of_star
         return
 
@@ -114,6 +124,7 @@ class Star(Body):
 class Moon(Body):
     def __init__(self, name, mass, month, orbital_planet):
         super().__init__(name, mass)
+        self.id = 'moon'
         self.month = month
         self.orbital_planet = orbital_planet
         return
@@ -125,7 +136,7 @@ class Moon(Body):
 
 earth = Planet("Earth", 100, 23, 233)
 jupitar = Planet("Jupitar", 5, 12, 210)
-mars = Planet("mars", 1222, 4, 110)
+mars = Planet("Mars", 1222, 4, 110)
 sun = Star("Sun", 200, "G-type")
 earth_moon = Moon("Earth's moon", 300, 23, earth)
 
@@ -147,7 +158,10 @@ system1.add_body(body2)
 system1.add_body(body3)
 system1.add_planet(jupitar)
 system1.add_planet(earth)
+system1.add_planet(mars)
 # system1.add_planet(sun) # uncomment to catch error
+# system1.add_star(jupitar) # uncomment to catch error
+# system1.add_moon(sun) # uncomment to catch error
 system1.add_star(sun)
 
 # print(System.all_stars(system1))
