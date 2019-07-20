@@ -20,10 +20,13 @@ class System:
         return body
 
     def add_planet(self, planet):
-        # if planet.__class__ != '__main__.Star' and __class__ != '__main__.Moon':
-        if planet not in System.planets:
-            System.planets.append(planet)
-        return planet
+        try:
+            if planet.id == "planet":
+                if planet not in System.planets:
+                    System.planets.append(planet)
+            return planet
+        except AttributeError:
+            print("ERROR: YOU CANNOT ADD SOMETHING THAT IS NOT A PLANET! ")
 
     def add_star(self, star):
         if star not in System.stars:
@@ -89,6 +92,7 @@ class Body:
 class Planet(Body):
     def __init__(self, name, mass, day, year):
         super().__init__(name, mass)
+        self.id = "planet"
         self.day = day
         self.year = year
         return
@@ -143,7 +147,7 @@ system1.add_body(body2)
 system1.add_body(body3)
 system1.add_planet(jupitar)
 system1.add_planet(earth)
-system1.add_planet(sun)
+# system1.add_planet(sun) # uncomment to catch error
 system1.add_star(sun)
 
 # print(System.all_stars(system1))
