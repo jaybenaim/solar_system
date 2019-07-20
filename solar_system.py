@@ -10,8 +10,10 @@ class System:
         return f"{self.bodies}"
 
     def add(self, body):
-        # body.mass.mass
-        self.bodies.append(body)
+        if body not in self.bodies: 
+            self.bodies.append(body)
+       
+           
 
     def total_mass(self):
         # make regex to see if no characters present
@@ -84,11 +86,13 @@ body2 = Body(sun, sun.mass)
 
 system1 = System()
 system1.add(body1)
+system1.add(body1)
 system1.add(body2)
 
-print(body1)
+
+# print(body1)
 print(system1)
-print(system1.total_mass())
+# print(system1.total_mass())
 
 
 # print(earth)
