@@ -1,60 +1,45 @@
 class System:
     def __init__(self):
         self.bodies = []
-
-    def __str__(self):
-        return f"{self.bodies}"
-
-    def __repr__(self):
-        return f"{self.bodies}"
-
-    def add(self):
-        self.bodies.append()
-
+    # def __str__(self):
+    #     return f"{self.bodies}"
+    # def __repr__(self):
+    #     return f"{self.bodies}"
+    def __repr__(self): 
+        return f'{self.bodies}'
+    def add(self, body):
+        print(body.mass.mass)
+        self.bodies.append(body.mass.mass)
     # this will add celestial body to the list
-
     def total_mass(self):
         total = 0
         for body in self.bodies:
             total += body
         return total
 
-
-class Body(System):
+class Body:
     def __init__(self, name, mass):
-        super.()__init__(name, mass)
         self.name = name
         self.mass = mass
-
     def __str__(self):
         return f"{self.name} {self.mass} "
-
     def __repr__(self):
         return f"{self.bodies} {self.mass} "
-
-
 class Planet(Body):
     def __init__(self, name, mass, day, year):
         super().__init__(name, mass)
         self.day = day
         self.year = year
         return
-
     def __str__(self):
         return f" Name: {self.name} | Mass {self.mass} | Day: {self.day} | Year {self.year} "
-
-
 class Star(Body):
     def __init__(self, name, mass, type_of_star):
         super().__init__(name, mass)
         self.type_of_star = type_of_star
-
         return
-
     def __str__(self):
         return f"  Name: {self.name} | Mass {self.mass} | Type: {self.type_of_star}"
-
-
 class Moon(Body):
     def __init__(self, name, mass, month, orbital_planet):
         super().__init__(name, mass)
@@ -71,13 +56,27 @@ sun = Star("Sun", 32323, "G-type")
 earth_moon = Moon("Earth's moon", 3232, 23, earth)
 
 
-print(earth)
-print()
-print(sun)
-print()
-print(earth_moon)
+# print(earth)
+# print()
+# print(sun)
+# print()
+# print(earth_moon)
 
+bod = Body(earth,sun)
+bod2 = Body(earth, earth_moon) 
+# print(bod)
 
+new_system = System()
+new_system.add(bod)
+new_system.add(bod2)
+print(new_system)
+
+print(new_system.total_mass())
+
+# new_body = Body() 
+# new_system.add(new_body)
+# print() 
+# print(new_system)
 # solar = System()
 # solar.add()
 # print(solar)
