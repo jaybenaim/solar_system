@@ -30,21 +30,33 @@ class Body:
         return
 
     def __str__(self):
-        return f"{self.name} {self.mass} "
+        return f"{self.name} {self.mass}"
 
     def __repr__(self):
-        return f"{self.name} {self.mass} "
+        return f"{self.name} {self.mass}"
 
 
 class Planet(Body):
+    planets = []
     def __init__(self, name, mass, day, year):
         super().__init__(name, mass)
         self.day = day
         self.year = year
+         
         return
 
     def __str__(self):
-        return f" Name: {self.name} | Mass {self.mass} | Day: {self.day} | Year {self.year} "
+        return f" Name: {self.name} | Mass {self.mass} | Day: {self.day} | Year {self.year}"
+
+    def add_planet(self, planet): 
+        if planet not in self.planets: 
+            self.planets.append(planet)
+
+    @classmethod
+    def all(cls): 
+        return f'{cls.planets}'
+        
+        
 
 
 class Star(Body):
@@ -72,8 +84,10 @@ class Moon(Body):
 earth = Planet("Earth", 100, 23, 233)
 sun = Star("Sun", 200, "G-type")
 earth_moon = Moon("Earth's moon", 300, 23, earth)
-
-
+jupitar = Planet('Jupitar', 5, 12, 21)
+earth.add_planet(jupitar)
+pluto = earth.add_planet(sun)
+print(Planet.all())
 # system1 = System()
 # system1.add(earth)
 # system1.add(sun)
@@ -92,6 +106,7 @@ system1.add(body2)
 
 # print(body1)
 print(system1)
+
 # print(system1.total_mass())
 
 
