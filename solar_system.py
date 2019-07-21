@@ -46,13 +46,11 @@ class System:
         except:
             print("ERROR: YOU CANNOT ADD SOMETHING THAT IS NOT A MOON! ")
 
-
     def total_mass(self):
-
         total = 0
         for body in self.bodies:
             total += body.mass
-        return f"The total mass is {total}"
+        return f"The total mass of this system is {total}"
 
     @classmethod
     def total_mass_of_system(cls):
@@ -67,7 +65,7 @@ class System:
         for moon in cls.moons:
             total += moon.mass
 
-        return f"The total mass is {total}"
+        return f"The total mass of all systems is {total}"
 
     @classmethod
     def all_planets(cls, system):
@@ -113,7 +111,7 @@ class Planet(Body):
 class Star(Body):
     def __init__(self, name, mass, type_of_star):
         super().__init__(name, mass)
-        self.id = 'star'
+        self.id = "star"
         self.type_of_star = type_of_star
         return
 
@@ -124,7 +122,7 @@ class Star(Body):
 class Moon(Body):
     def __init__(self, name, mass, month, orbital_planet):
         super().__init__(name, mass)
-        self.id = 'moon'
+        self.id = "moon"
         self.month = month
         self.orbital_planet = orbital_planet
         return
@@ -165,12 +163,12 @@ system1.add_planet(mars)
 system1.add_star(sun)
 
 # print(System.all_stars(system1))
-print(System.all_planets(system1))
-print(System.total_mass_of_system())
+# print(System.all_planets(system1))
+# print(System.total_mass_of_system())
 # print(body1)
 # print(system1)
 
-# print(system1.total_mass())
+print(system1.total_mass())
 
 
 # print(earth)
